@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Arman 💖</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #fff0f5 0%, #ffe4e1 50%, #ffd1dc 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Clean stacked layout system */
+        .screen {
+            width: 100%;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.6s ease-in-out;
+        }
+
+        .hidden {
+            display: none !important;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* Elegant card look */
+        .card {
+            width: 100%;
+            max-width: 550px;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 45px 35px;
+            border-radius: 30px;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(255, 182, 193, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            z-index: 2;
+        }
+
+        .title {
+            font-family: 'Caveat', cursive;
+            font-size: 3.5rem;
+            color: #ff527b;
+            margin-bottom: 5px;
+            line-height: 1.2;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: #ff7597;
+            font-weight: 600;
+            margin-bottom: 25px;
+        }
+
+        /* Romantic primary button */
+        .button {
+            background: #ff6384;
+            color: white;
+            border: none;
+            padding: 14px 40px;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 15px rgba(255, 99, 132, 0.2);
+        }
+
+        .button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 20px rgba(255, 99, 132, 0.3);
+            background: #ff4d73;
+        }
+
+        /* Handwritten-style reason box */
+        .reason {
+            font-family: 'Caveat', cursive;
+            background: rgba(255, 255, 255, 0.6);
+            border: 2px dashed #ffb6c1;
+            padding: 30px 20px;
+            border-radius: 20px;
+            margin: 25px 0;
+            font-size: 1.9rem;
+            color: #4a4a4a;
+            line-height: 1.4;
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Soft trackers */
+        .tracker {
+            margin-top: 15px;
+            color: #ff527b;
+            font-size: 0.95rem;
+            font-weight: 600;
+            background: rgba(255, 240, 245, 0.7);
+            padding: 8px 15px;
+            border-radius: 50px;
+            display: inline-block;
+        }
+
+        /* Private unlock console */
+        .secretBox {
+            margin-top: 30px;
+            background: rgba(255, 240, 245, 0.5);
+            padding: 20px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 182, 193, 0.4);
+            transition: all 0.5s ease;
+        }
+
+        .secretBox h3 {
+            font-size: 1rem;
+            color: #ff6384;
+            margin-bottom: 10px;
+        }
+
+        input {
+            padding: 12px 15px;
+            border-radius: 15px;
+            border: 1px solid #ffb6c1;
+            width: 80%;
+            outline: none;
+            text-align: center;
+            font-size: 1rem;
+            color: #4a4a4a;
+            transition: border 0.3s;
+        }
+
+        input:focus {
+            border-color: #ff527b;
+        }
+
+        .smallBtn {
+            margin-top: 12px;
+            padding: 8px 25px;
+            border: none;
+            border-radius: 12px;
+            background: #ff7597;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .smallBtn:hover { background: #ff527b; }
+
+        /* Sincere visual letter layout */
+        .letterBox {
+            margin-top: 30px;
+            background: rgba(255, 255, 255, 0.98);
+            padding: 30px 25px;
+            border-radius: 25px;
+            border: 1px solid rgba(255, 182, 193, 0.5);
+            box-shadow: 0 10px 25px rgba(255, 105, 180, 0.15);
+            text-align: left;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            display: none;
+        }
+
+        .letterBox.reveal {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .letter-text {
+            color: #4a4a4a;
+            line-height: 1.7;
+            font-size: 1.05rem;
+            white-space: pre-line;
+        }
+
+        .letter-sign {
+            font-family: 'Caveat', cursive;
+            font-size: 2rem;
+            color: #ff4d73;
+            text-align: right;
+            margin-top: 20px;
+        }
+
+        /* Background floating hearts */
+        .heart {
+            position: absolute;
+            bottom: -50px;
+            user-select: none;
+            pointer-events: none;
+            animation: floatUp linear infinite;
+            opacity: 0.6;
+            z-index: 1;
+        }
+
+        /* Celebration burst hearts */
+        .burst-heart {
+            position: absolute;
+            user-select: none;
+            pointer-events: none;
+            animation: burstOut 1.2s ease-out forwards;
+            z-index: 10;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.6; }
+            90% { opacity: 0.6; }
+            100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+        }
+
+        @keyframes burstOut {
+            0% { transform: translate(0, 0) scale(0); opacity: 1; }
+            100% { transform: translate(var(--tx), var(--ty)) scale(1.4) rotate(var(--rot)); opacity: 0; }
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-6px); }
+            40%, 80% { transform: translateX(6px); }
+        }
+        .shake { animation: shake 0.4s ease-in-out; }
+    </style>
+</head>
+<body>
+
+    <!-- Lover's Oath by Yu-Peng Chen Background Audio Stream -->
+    <audio id="music" loop preload="auto">
+        <source src="lovers-oath.mp3.mp3" type="audio/mp3">
+    </audio>
+
+    <!-- Screen 1: Home Landing Screen -->
+    <div class="screen" id="home">
+        <div class="card">
+            <h1 class="title">For Arman 💖</h1>
+            <p class="subtitle">Reasons Why I Love You</p>
+            <button class="button" onclick="start()">✨ Open ✨</button>
+        </div>
+    </div>
+
+    <!-- Screen 2: Main Dynamic Interface -->
+    <div class="screen hidden" id="main">
+        <div class="card">
+            <h1 class="title">💌 Dear Arman</h1>
+            
+            <div class="reason" id="reason">Loading your reason...</div>
+
+            <div>
+                <div class="tracker">💞 Together for <span id="days"></span> days</div>
+            </div>
+            <div>
+                <div class="tracker">🎂 Until Dec 1, 2026: <span id="count"></span> days</div>
+            </div>
+
+            <!-- Password Form Block -->
+            <div class="secretBox" id="pwBox">
+                <h3>🔐 Secret Unlock</h3>
+                <input id="pw" placeholder="Enter our phrase...">
+                <br>
+                <button class="smallBtn" onclick="check()">Unlock</button>
+            </div>
+
+            <!-- Dynamic Hidden Letter Frame -->
+            <div class="letterBox" id="secretLetter">
+                <div class="letter-text" id="letterContent"></div>
+                <div class="letter-sign">Always and forever, <br>Lana 💖</div>
+            </div>
+
+            <!-- December Letter Anniversary Container -->
+            <div class="secretBox" id="decLetter" style="display:none;">
+                <h3>💌 December Letter</h3>
+                <p style="color: #555; line-height: 1.5; font-size: 1.05rem;">
+                    Happy anniversary, Arman.<br><br>
+                    A year and 6 months later, and I still choose you in every lifetime.<br><br>
+                    You are my favorite forever.<br><br>
+                    <strong>Love, Lana 💖</strong>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const reasons = [
+            "Because your smile fixes everything.",
+            "Because you feel like home.",
+            "Because you make life softer.",
+            "Because I trust you completely.",
+            "Because you are my safe place.",
+            "Because you are my favorite person.",
+            "Because you make even ordinary days feel special.",
+            "Because the world is better when you're in it."
+        ];
+
+        const beautifulLetter = 
+            `Arman,
+
+            Sometimes I look at you and wonder how I got so incredibly lucky. In a world full of noise and chaos, you are my absolute stillness. You are the person who makes the heavy days feel light, and the good days feel like magic. 
+
+            Loving you isn't just a feeling; it’s the easiest, most natural choice I’ve ever made. I love the way your mind works, the safety I feel when I'm wrapped in your world, and the quiet comfort of knowing we're building something beautiful together. Thank you for being my anchor, my best friend, and my greatest adventure. 
+
+            No matter where life takes us, or how much time passes, my heart will always recognize yours.`;
+
+        function get12HourReason() {
+            const now = new Date().getTime();
+            const twelveHoursInMs = 12 * 60 * 60 * 1000;
+            
+            let savedReason = localStorage.getItem('arman_reason');
+            let lastUpdate = localStorage.getItem('arman_last_update');
+            let savedIndex = localStorage.getItem('arman_reason_index');
+
+            if (!savedReason || !lastUpdate || (now - lastUpdate > twelveHoursInMs)) {
+                let currentIndex = savedIndex ? parseInt(savedIndex) : -1;
+                let newIndex;
+                
+                do {
+                    newIndex = Math.floor(Math.random() * reasons.length);
+                } while (newIndex === currentIndex && reasons.length > 1);
+
+                savedReason = reasons[newIndex];
+                localStorage.setItem('arman_reason', savedReason);
+                localStorage.setItem('arman_reason_index', newIndex);
+                localStorage.setItem('arman_last_update', now);
+            }
+            return savedReason;
+        }
+
+        function start() {
+            const music = document.getElementById("music");
+            
+            // Unlocks audio context on user tap
+            music.load();
+            music.play().catch(e => {
+                console.log("Audio waiting for explicit interaction", e);
+            });
+
+            // Wipe out home screen completely so text won't layout or bleed behind the card
+            document.getElementById("home").classList.add("hidden");
+            document.getElementById("main").classList.remove("hidden");
+
+            document.getElementById("reason").innerText = get12HourReason();
+        }
+
+        /* 💞 DAYS TOGETHER COUNTER */
+        const startDate = new Date("2025-06-01");
+        const daysDiff = Math.floor((new Date() - startDate) / 86400000);
+        document.getElementById("days").innerText = daysDiff;
+
+        /* 🎂 COUNTDOWN TIME */
+        const target = new Date("2026-12-01");
+        const countDiff = Math.ceil((target - new Date()) / 86400000);
+        document.getElementById("count").innerText = countDiff >= 0 ? countDiff : 0;
+
+        /* 🔐 PASSWORD VALIDATION */
+        function check() {
+            const val = document.getElementById("pw").value.toLowerCase().trim();
+            const box = document.getElementById("pwBox");
+
+            if (val === "always and forever") {
+                createSparkleBurst();
+                
+                box.style.opacity = "0";
+                box.style.transform = "scale(0.9) translateY(-10px)";
+                
+                setTimeout(() => {
+                    box.style.display = "none";
+                    
+                    const letterBox = document.getElementById("secretLetter");
+                    document.getElementById("letterContent").innerText = beautifulLetter;
+                    letterBox.classList.add("reveal");
+                }, 500);
+
+            } else {
+                box.classList.add("shake");
+                setTimeout(() => box.classList.remove("shake"), 400);
+            }
+        }
+
+        /* 🌸 VISUAL CELEBRATION BURST EFFECT */
+        function createSparkleBurst() {
+            const emojis = ["✨", "💖", "💕", "🌸", "💘"];
+            const burstCount = 45;
+            const inputRect = document.getElementById("pw").getBoundingClientRect();
+            
+            const originX = inputRect.left + (inputRect.width / 2) + window.scrollX;
+            const originY = inputRect.top + (inputRect.height / 2) + window.scrollY;
+
+            for (let i = 0; i < burstCount; i++) {
+                const p = document.createElement("div");
+                p.className = "burst-heart";
+                p.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
+                
+                p.style.left = originX + "px";
+                p.style.top = originY + "px";
+                p.style.fontSize = (16 + Math.random() * 22) + "px";
+
+                const angle = Math.random() * Math.PI * 2;
+                const distance = 70 + Math.random() * 180;
+                const tx = Math.cos(angle) * distance;
+                const ty = Math.sin(angle) * distance - 40; 
+                const rot = Math.random() * 360;
+
+                p.style.setProperty('--tx', tx + "px");
+                p.style.setProperty('--ty', ty + "px");
+                p.style.setProperty('--rot', rot + "deg");
+
+                document.body.appendChild(p);
+                setTimeout(() => p.remove(), 1200);
+            }
+        }
+
+        /* 💌 ANNIVERSARY LETTER CHECK */
+        const today = new Date();
+        if (today.getMonth() === 11 && today.getDate() === 1) {
+            document.getElementById("decLetter").style.display = "block";
+        }
+
+        /* 💖 SOFT DRIFTING HEARTS BACKGROUND */
+        const heartCount = 35;
+        for (let i = 0; i < heartCount; i++) {
+            let h = document.createElement("div");
+            h.className = "heart";
+            h.innerHTML = ["💖", "🌸", "💕", "✨"][Math.floor(Math.random() * 4)];
+            h.style.left = Math.random() * 100 + "vw";
+            h.style.fontSize = (14 + Math.random() * 20) + "px";
+            h.style.animationDuration = (6 + Math.random() * 8) + "s";
+            h.style.animationDelay = (Math.random() * 5) + "s";
+            document.body.appendChild(h);
+        }
+    </script>
+</body>
+</html>
